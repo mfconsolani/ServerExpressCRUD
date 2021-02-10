@@ -1,8 +1,7 @@
 import express, {Request, Response} from 'express';
-import { builtinModules } from 'module';
 import MetodosServidor, { Product } from './handlerClass';
 
-export const router = express.Router();
+export const productRoutes = express.Router();
 
 let db:Array<Product> = [];
 
@@ -11,12 +10,12 @@ let instance = new MetodosServidor(db);
 // Get requests
 
 // Listar todos los productos
-router.get('/productos', (req: Request, res: Response) => {    
+productRoutes.get('/productos', (req: Request, res: Response) => {    
     instance.displayAll(res);
 });
 
 // Listar un producto específico
-router.get('/productos/:id', (req: Request, res: Response) => {
+productRoutes.get('/productos/:id', (req: Request, res: Response) => {
     instance.displayOne(req, res);    
 });
 
@@ -24,7 +23,7 @@ router.get('/productos/:id', (req: Request, res: Response) => {
 // Post requests
 
 // Cargar un nuevo producto
-router.post('/productos/', (req: Request, res: Response)=> { 
+productRoutes.post('/productos/', (req: Request, res: Response)=> { 
     instance.saveProduct(req, res)
 });
 
@@ -32,7 +31,7 @@ router.post('/productos/', (req: Request, res: Response)=> {
 
 // Reemplzar datos
 
-router.put('/productos/:id', (req: Request, res: Response)=> {
+productRoutes.put('/productos/:id', (req: Request, res: Response)=> {
     instance.replaceData(req, res);
 })
 
@@ -40,6 +39,6 @@ router.put('/productos/:id', (req: Request, res: Response)=> {
 
 // Elimina un producto
 
-router.delete('/productos/:id', (req: Request, res: Response) => {
+productRoutes.delete('/productos/:id', (req: Request, res: Response) => {
     instance.deleteItem(req, res)
 })

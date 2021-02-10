@@ -1,6 +1,6 @@
-import express, {Application, Request, Response} from 'express';
-import MetodosServidor, { Product } from './handlerClass';
-import { router } from './products'
+import express, {Application} from 'express';
+
+import { productRoutes } from './products'
 
 
 // Server set-up
@@ -30,6 +30,6 @@ server.on("Error", (error:Error) => {
 
 // Router
 
-app.use('/api', router);
+app.use('/api', productRoutes);
 
 
